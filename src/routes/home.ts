@@ -2,7 +2,6 @@ import type { FastifyInstance } from 'fastify';
 
 export async function registerHomeRoutes(app: FastifyInstance) {
   app.get('/', async (request, reply) => {
-    // Пока моки. Позже заменим на SQL-запрос по подпискам пользователя.
     const feed = [
       {
         id: '1',
@@ -29,7 +28,7 @@ export async function registerHomeRoutes(app: FastifyInstance) {
 
     return reply.view('pages/home.ejs', {
       title: 'Интересные мероприятия',
-      user: null, // позже подставим реального пользователя
+      user: null,
       feed,
     });
   });
