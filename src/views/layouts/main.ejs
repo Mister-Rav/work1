@@ -1,40 +1,45 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title><%= title %> — <%= appName %></title>
+  <title>
+    <%= title %> — <%= appName %>
+  </title>
   <link rel="icon" href="/public/img/logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/public/css/styles.css" />
 </head>
+
 <body>
   <header class="site-header">
     <div class="container header-inner">
       <a class="logo" href="/">
         <img src="/public/img/logo.svg" alt="" width="28" height="28" />
-        <span><%= appName %></span>
+        <span>
+          <%= appName %>
+        </span>
       </a>
-
       <nav class="nav">
         <a href="/feed">Лента</a>
         <a href="/events">Мероприятия</a>
         <a href="/organizers">Организаторы</a>
         <a href="/organizer" class="nav-organizer">Организаторам</a>
       </nav>
-
       <div class="auth">
         <% if (user) { %>
           <div class="user-menu">
             <button class="user-menu-trigger" type="button">
               <img src="<%= user.avatarUrl %>" alt="" width="28" height="28" class="avatar" />
-              <span><%= user.firstName %></span>
+              <span>
+                <%= user.firstName %>
+              </span>
             </button>
-            <!-- выпадающее меню подключим позже -->
           </div>
-        <% } else { %>
-          <button class="btn btn-ghost" type="button" data-open="login">Войти</button>
-          <button class="btn btn-primary" type="button" data-open="register">Регистрация</button>
-        <% } %>
+          <% } else { %>
+            <button class="btn btn-ghost" type="button" data-open="login">Войти</button>
+            <button class="btn btn-primary" type="button" data-open="register">Регистрация</button>
+            <% } %>
       </div>
     </div>
   </header>
@@ -45,7 +50,8 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <span>© <%= year %> <%= appName %></span>
+      <span>© <%= year %>
+          <%= appName %></span>
       <nav class="footer-nav">
         <a href="/legal/privacy">Политика конфиденциальности</a>
         <a href="/legal/terms">Пользовательское соглашение</a>
@@ -54,26 +60,18 @@
     </div>
   </footer>
 
-  <!-- Модальные окна. Пока скрыты, откроются по кнопкам Войти/Регистрация -->
   <div class="modal" id="modal-login" hidden>
     <div class="modal-backdrop" data-close></div>
     <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="login-title">
       <button class="modal-close" type="button" data-close aria-label="Закрыть">×</button>
       <h2 id="login-title">Вход</h2>
       <form action="/auth/login" method="post" class="form">
-        <label class="field">
-          <span>E-mail</span>
-          <input type="email" name="email" required autocomplete="email" />
-        </label>
-        <label class="field">
-          <span>Пароль</span>
-          <input type="password" name="password" required autocomplete="current-password" />
-        </label>
+        <label class="field"><span>E-mail</span><input type="email" name="email" required
+            autocomplete="email" /></label>
+        <label class="field"><span>Пароль</span><input type="password" name="password" required
+            autocomplete="current-password" /></label>
         <button class="btn btn-primary btn-block" type="submit">Войти</button>
-        <p class="form-hint">
-          Нет аккаунта?
-          <a href="#" data-open="register">Зарегистрироваться</a>
-        </p>
+        <p class="form-hint">Нет аккаунта? <a href="#" data-open="register">Зарегистрироваться</a></p>
       </form>
     </div>
   </div>
@@ -84,34 +82,21 @@
       <button class="modal-close" type="button" data-close aria-label="Закрыть">×</button>
       <h2 id="register-title">Регистрация</h2>
       <form action="/auth/register" method="post" class="form">
-        <label class="field">
-          <span>Имя</span>
-          <input type="text" name="firstName" required autocomplete="given-name" />
-        </label>
-        <label class="field">
-          <span>E-mail</span>
-          <input type="email" name="email" required autocomplete="email" />
-        </label>
-        <label class="field">
-          <span>Пароль</span>
-          <input type="password" name="password" required autocomplete="new-password" minlength="8" />
-        </label>
-        <label class="check">
-          <input type="checkbox" name="consent" required />
-          <span>
-            Согласен(а) с
-            <a href="/legal/consent" target="_blank">обработкой персональных данных</a>
-          </span>
-        </label>
+        <label class="field"><span>Имя</span><input type="text" name="firstName" required
+            autocomplete="given-name" /></label>
+        <label class="field"><span>E-mail</span><input type="email" name="email" required
+            autocomplete="email" /></label>
+        <label class="field"><span>Пароль</span><input type="password" name="password" required
+            autocomplete="new-password" minlength="8" /></label>
+        <label class="check"><input type="checkbox" name="consent" required /><span>Согласен(а) с <a
+              href="/legal/consent" target="_blank">обработкой персональных данных</a></span></label>
         <button class="btn btn-primary btn-block" type="submit">Создать аккаунт</button>
-        <p class="form-hint">
-          Уже есть аккаунт?
-          <a href="#" data-open="login">Войти</a>
-        </p>
+        <p class="form-hint">Уже есть аккаунт? <a href="#" data-open="login">Войти</a></p>
       </form>
     </div>
   </div>
 
   <script src="/public/js/modals.js" defer></script>
 </body>
+
 </html>

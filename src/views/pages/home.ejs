@@ -1,36 +1,38 @@
-import type { FastifyInstance } from 'fastify';
+<section class="hero">
+  <div class="container">
+    <h1 class="hero-title">Интересные мероприятия</h1>
+    <p class="hero-subtitle">
+      Подписывайтесь на организаторов и направления — и видьте только то,
+      что вам действительно интересно.
+    </p>
+  </div>
+</section>
 
-export async function registerHomeRoutes(app: FastifyInstance) {
-app.get('/', async (request, reply) => {
-// Пока моки. Позже заменим на SQL-запрос по подпискам пользователя.
-const feed = [
-{
-id: '1',
-title: 'Быстрые свидания в центре',
-city: 'Москва',
-date: '2 ноября',
-organizerName: 'Клуб «Искра»',
-},
-{
-id: '2',
-title: 'Поход выходного дня',
-city: 'Санкт-Петербург',
-date: '9 ноября',
-organizerName: 'Тропа',
-},
-{
-id: '3',
-title: 'Тренинг по публичным выступлениям',
-city: 'Казань',
-date: '15 ноября',
-organizerName: 'Речь+',
-},
-];
-
-return reply.view('pages/home.ejs', {
-title: 'Интересные мероприятия',
-user: null, // позже подставим реального пользователя
-feed,
-});
-});
-}
+<section class="section">
+  <div class="container">
+    <div class="feed">
+      <% if (!feed || feed.length===0) { %>
+        <p class="feed-empty">Пока нет предстоящих мероприятий. Загляните позже.</p>
+        <% } else { %>
+          <% feed.forEach(function (item) { %>
+            <article class="feed-card">
+              <a class="feed-card-link" href="/events/<%= item.id %>">
+                <div class="feed-card-cover"></div>
+                <div class="feed-card-body">
+                  <div class="feed-card-date">
+                    <%= item.date %>
+                  </div>
+                  <h3 class="feed-card-title">
+                    <%= item.title %>
+                  </h3>
+                  <div class="feed-card-meta">
+                    <%= item.city %> · <%= item.organizerName %>
+                  </div>
+                </div>
+              </a>
+            </article>
+            <% }); %>
+              <% } %>
+    </div>
+  </div>
+</section>
